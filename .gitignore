@@ -3,3 +3,7 @@ node_modules/
 
 # Setup Script
 bhvr-js-stack-setup.sh
+
+# Configs
+.env
+
