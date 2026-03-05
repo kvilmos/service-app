@@ -1,7 +1,7 @@
 import { Button } from "@/components/shadcn-ui/button";
 import { Label } from "@/components/shadcn-ui/label";
 
-export default function SignUpForm() {
+export default function SignUpForm({ onSwitch }) {
   return (
     <div>
       <h1>Welcome to Service App</h1>
@@ -16,6 +16,12 @@ export default function SignUpForm() {
       <input type="text" />
 
       <Button>Sign Un</Button>
+      <p>
+        Already have an account?
+        <Button onClick={onSwitch} variant="link">
+          Sign In
+        </Button>
+      </p>
     </div>
   );
 }

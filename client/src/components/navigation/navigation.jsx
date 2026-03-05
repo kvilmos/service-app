@@ -13,14 +13,9 @@ export default function NavBar() {
               Home
             </NavLink>
           </TabsTrigger>
-          <TabsTrigger value="content">
-            <NavLink to="/login" end>
-              sign in
-            </NavLink>
-          </TabsTrigger>
-          <TabsTrigger value="sign in">
-            <NavLink to="/register" end>
-              sing up
+          <TabsTrigger value="authentication">
+            <NavLink to="/authentication" end>
+              Auth
             </NavLink>
           </TabsTrigger>
         </TabsList>

@@ -124,3 +124,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.s-logo {
+  aspect-ratio: 1/1;
+  width: 64px;
+  height: 64px;
+}
