@@ -17,7 +17,7 @@ export default function SignInForm({ onSwitch }) {
       <p className="text-sm">Please enter your details.</p>
 
       <FieldGroup className="auth-form">
-        <Field>
+        <Field className="auth-field">
           <FieldLabel htmlFor="signin-email">Email</FieldLabel>
           <Input
             id="signin-email"
@@ -25,7 +25,7 @@ export default function SignInForm({ onSwitch }) {
             placeholder="example@mail.com"
           />
         </Field>
-        <Field>
+        <Field className="auth-field">
           <FieldLabel htmlFor="signin-password">Password</FieldLabel>
           <Input id="signin-password" type="password" />
         </Field>
@@ -34,7 +34,7 @@ export default function SignInForm({ onSwitch }) {
         </Field>
       </FieldGroup>
 
-      <p className="text-sm">
+      <p className="text-sm switch-p">
         Don't have an account?&nbsp;
         <Button
           onClick={onSwitch}
