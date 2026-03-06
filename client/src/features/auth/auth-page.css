@@ -1,0 +1,30 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.back-button {
+  padding: 0;
+}
+
+.logo {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.auth-form {
+  padding: 0.5rem 0 0 0;
+  gap: 0.5rem;
+}
+
+.auth-form__switch {
+  padding: 0;
+}
