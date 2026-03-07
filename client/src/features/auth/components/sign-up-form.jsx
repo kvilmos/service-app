@@ -1,24 +1,57 @@
 import { Button } from "@/components/shadcn-ui/button";
-import { Label } from "@/components/shadcn-ui/label";
+import { Input } from "@/components/shadcn-ui/input";
+
+import "@/features/auth/auth-page.css";
+import { Field, FieldGroup, FieldLabel } from "@/components/shadcn-ui/field";
 
 export default function SignUpForm({ onSwitch }) {
   return (
     <div>
-      <h1>Welcome to Service App</h1>
+      <h1 className="text-xl">Welcome to Service App</h1>
 
-      <Label>Full Name</Label>
-      <input type="text" />
-      <Label>Email</Label>
-      <input type="text" />
-      <Label>Password</Label>
-      <input type="text" />
-      <Label>Password Confirm</Label>
-      <input type="text" />
+      <FieldGroup className="auth-form">
+        <Field className="auth-field">
+          <FieldLabel htmlFor="signup-email">Email</FieldLabel>
+          <Input
+            id="signup-email"
+            type="email"
+            placeholder="example@mail.com"
+          />
+        </Field>
 
-      <Button>Sign Un</Button>
-      <p>
-        Already have an account?
-        <Button onClick={onSwitch} variant="link">
+        <Field className="auth-field">
+          <FieldLabel htmlFor="signup-full-name">Full Name</FieldLabel>
+          <Input
+            id="signup-full-name"
+            type="text"
+            placeholder="example@mail.com"
+          />
+        </Field>
+
+        <Field className="auth-field">
+          <FieldLabel htmlFor="signup-password">Password</FieldLabel>
+          <Input id="signup-password" type="password" />
+        </Field>
+
+        <Field className="auth-field">
+          <FieldLabel htmlFor="signup-confirm-password">
+            Confirm Password
+          </FieldLabel>
+          <Input id="signup-confirm-password" type="password" />
+        </Field>
+
+        <Field>
+          <Button type="submit">Sign Up</Button>
+        </Field>
+      </FieldGroup>
+
+      <p className="text-sm switch-p">
+        Already have an account?&nbsp;
+        <Button
+          onClick={onSwitch}
+          variant="link"
+          className="text-sm auth-form__switch"
+        >
           Sign In
         </Button>
       </p>

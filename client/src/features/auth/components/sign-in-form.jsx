@@ -1,14 +1,8 @@
 import { Button } from "@/components/shadcn-ui/button";
-import { Label } from "@/components/shadcn-ui/label";
 import { Input } from "@/components/shadcn-ui/input";
 
 import "@/features/auth/auth-page.css";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/shadcn-ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/shadcn-ui/field";
 
 export default function SignInForm({ onSwitch }) {
   return (
@@ -29,8 +23,9 @@ export default function SignInForm({ onSwitch }) {
           <FieldLabel htmlFor="signin-password">Password</FieldLabel>
           <Input id="signin-password" type="password" />
         </Field>
+
         <Field>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Sign In</Button>
         </Field>
       </FieldGroup>
 
