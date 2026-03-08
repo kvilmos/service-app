@@ -1,2 +1,1 @@
-export const VERSION = "1.0.0";
-export const API_URL = "http://localhost:3000";
+export { signUpSchema } from "./schemas/auth-schema";

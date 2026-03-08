@@ -5,6 +5,8 @@ import { openAPI } from "better-auth/plugins";
 import { sendEmailViaMailgun } from "@/lib/email";
 
 export const auth = betterAuth({
+  basePath: "/api/v1/auth",
+  trustedOrigins: ["http://localhost:5173"],
   database: drizzleAdapter(db, {
     provider: "pg",
   }),

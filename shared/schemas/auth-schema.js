@@ -1,10 +1,10 @@
 import z from "zod";
 
-export const singUpForm = z
+export const signUpSchema = z
   .object({
     email: z
-      .trim()
       .email("Invalid email address")
+      .trim()
       .min(5, "Email must be at least 5 characters")
       .max(100, "Email must be less than 100 characters"),
     fullName: z
@@ -15,12 +15,12 @@ export const singUpForm = z
     password: z
       .string()
       .trim()
-      .min(6, "Password must be at least 6 characters")
+      .min(8, "Password must be at least 6 characters")
       .max(100, "Password must be less than 100 characters"),
     confirmPassword: z
       .string()
       .trim()
-      .min(6, "Confirm password must be at least 6 characters")
+      .min(8, "Confirm password must be at least 6 characters")
       .max(100, "Confirm password must be less than 100 characters"),
   })
   .refine((data) => data.password === data.confirmPassword, {
