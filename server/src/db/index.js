@@ -8,7 +8,6 @@ export const pool = new Pool({
   idleTimeoutMillis: 30000,
 });
 
-//const db = drizzle(process.env.DATABASE_URL);
 const db = drizzle(pool, { schema, casing: "snake_case" });
 
 export default db;
