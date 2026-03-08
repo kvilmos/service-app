@@ -13,6 +13,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { signUpSchema } from "@app/shared";
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
+import { Spinner } from "@/components/shadcn-ui/spinner";
 
 export default function SignUpForm({ onSwitch }) {
   const form = useForm({
@@ -25,28 +27,42 @@ export default function SignUpForm({ onSwitch }) {
     },
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   async function onSubmit(values) {
-    const { _ } = await authClient.signUp.email(
+    setIsLoading(true);
+
+    const { data, error } = await authClient.signUp.email(
       {
         email: values.email,
         password: values.password,
         name: values.fullName,
       },
       {
-        onRequest: (ctx) => {
-          console.log("loading..", ctx);
-          console.log("data error..", "data", " : ", "error");
+        onRequest: () => {
+          setIsLoading(true);
         },
         onSuccess: (ctx) => {
           console.log("registered", ctx);
-          console.log("data error..", "data", " : ", "error");
         },
         onError: (ctx) => {
+          console.log("registered", ctx);
+
           form.setError("root", { message: ctx.error.message });
-          console.log("data error..", "data", " : ", "error");
         },
       },
     );
+
+    setIsLoading(false);
+
+    if (error) {
+      form.setError("root", { message: error.message });
+      return;
+    }
+
+    if (data) {
+      console.log("Siker:", data);
+    }
   }
 
   return (
@@ -145,7 +161,7 @@ export default function SignUpForm({ onSwitch }) {
               form="sign-up-form"
               disabled={form.formState.isSubmitting}
             >
-              Sign Up
+              {isLoading ? <Spinner></Spinner> : "Sign Up"}
             </Button>
           </Field>
         </FieldGroup>
