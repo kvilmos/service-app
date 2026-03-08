@@ -1,8 +1,10 @@
 import AuthView from "@/features/auth/auth-page";
-import { ProtectedRoute } from "@/features/auth/protected-test";
+import { ProtectedRoute } from "@/router/protected-route";
 import BlankLayout from "@/layouts/blank-layout";
 import MainLayout from "@/layouts/main-layout";
 import { createBrowserRouter } from "react-router";
+import ProtectedPage from "@/features/protected-page";
+import { GuestRoute } from "./guest-route";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +12,8 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "protected",
         element: <ProtectedRoute />,
+        children: [{ path: "protected", element: <ProtectedPage /> }],
       },
     ],
   },
@@ -20,8 +22,8 @@ const router = createBrowserRouter([
     element: <BlankLayout />,
     children: [
       {
-        path: "",
-        element: <AuthView />,
+        element: <GuestRoute />,
+        children: [{ path: "", element: <AuthView /> }],
       },
     ],
   },
