@@ -10,6 +10,9 @@ export const signUpSchema = z
     fullName: z
       .string()
       .trim()
+      .regex(/^[\p{L}\s]+$/u, {
+        message: "Only letters and spaces are allowed",
+      })
       .min(2, "Full name must be at least 2 characters")
       .max(100, "Full name must be less than 100 characters"),
     password: z
@@ -17,11 +20,7 @@ export const signUpSchema = z
       .trim()
       .min(8, "Password must be at least 6 characters")
       .max(100, "Password must be less than 100 characters"),
-    confirmPassword: z
-      .string()
-      .trim()
-      .min(8, "Confirm password must be at least 6 characters")
-      .max(100, "Confirm password must be less than 100 characters"),
+    confirmPassword: z.string().trim().nonempty("Confirm the password"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",

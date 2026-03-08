@@ -15,6 +15,7 @@ import { signUpSchema } from "@app/shared";
 import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
 import { Spinner } from "@/components/shadcn-ui/spinner";
+import { toast } from "sonner";
 
 export default function SignUpForm({ onSwitch }) {
   const form = useForm({
@@ -32,7 +33,7 @@ export default function SignUpForm({ onSwitch }) {
   async function onSubmit(values) {
     setIsLoading(true);
 
-    const { data, error } = await authClient.signUp.email(
+    await authClient.signUp.email(
       {
         email: values.email,
         password: values.password,
@@ -42,27 +43,27 @@ export default function SignUpForm({ onSwitch }) {
         onRequest: () => {
           setIsLoading(true);
         },
-        onSuccess: (ctx) => {
-          console.log("registered", ctx);
+        onSuccess: () => {
+          toast("Successful registration. Now Sign In.", {
+            position: "top-center",
+          });
+          onSwitch();
         },
         onError: (ctx) => {
-          console.log("registered", ctx);
+          console.log(ctx);
 
+          if (ctx.error.code === "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL") {
+            form.setError("email", { message: ctx.error.message });
+            return;
+          }
+
+          toast.warning(ctx.error.message, { position: "top-center" });
           form.setError("root", { message: ctx.error.message });
         },
       },
     );
 
     setIsLoading(false);
-
-    if (error) {
-      form.setError("root", { message: error.message });
-      return;
-    }
-
-    if (data) {
-      console.log("Siker:", data);
-    }
   }
 
   return (
