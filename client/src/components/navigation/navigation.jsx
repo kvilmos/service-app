@@ -18,6 +18,11 @@ export default function NavBar() {
               Auth
             </NavLink>
           </TabsTrigger>
+          <TabsTrigger value="protected">
+            <NavLink to="/protected" end>
+              Protected-test
+            </NavLink>
+          </TabsTrigger>
         </TabsList>
       </Tabs>
     </nav>
