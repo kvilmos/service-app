@@ -1,7 +1,6 @@
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 
-import users from "./src/routes/users/user-routes";
 import index from "./src/routes/index-routes";
 
 import notFound from "./src/routes/errors/not-found";
@@ -12,9 +11,8 @@ const app = new Hono();
 
 app
   .use("*", logger())
-  .on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw))
+  .on(["POST", "GET"], "/api/v1/auth/*", (c) => auth.handler(c.req.raw))
   .route("/api/v1", index)
-  .route("/api/v1/users", users)
   .notFound(notFound)
   .onError(error);
 
