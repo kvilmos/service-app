@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import db from "@/db";
-import { openAPI } from "better-auth/plugins";
+import { admin, openAPI } from "better-auth/plugins";
 import { sendEmailViaMailgun } from "@/lib/email";
 
 export const auth = betterAuth({
@@ -27,5 +27,5 @@ export const auth = betterAuth({
     expiresIn: 60 * 60 * 24 * 7,
     updateAge: 60 * 60 * 24,
   },
-  plugins: [openAPI()],
+  plugins: [openAPI(), admin()],
 });

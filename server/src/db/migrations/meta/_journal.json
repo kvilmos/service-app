@@ -8,6 +8,13 @@
       "when": 1772698224077,
       "tag": "0000_cheerful_reaper",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1773075804562,
+      "tag": "0001_magical_wolfsbane",
+      "breakpoints": true
     }
   ]
 }
