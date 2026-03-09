@@ -11,5 +11,12 @@ export const requireAuth = createMiddleware(async (c, next) => {
   c.set("user", session.user);
   c.set("session", session.session);
 
+  if (!session.user.emailVerified) {
+    return c.json(
+      { message: "Email not verified", needsVerification: true },
+      403,
+    );
+  }
+
   await next();
 });

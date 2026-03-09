@@ -15,13 +15,7 @@ export const auth = betterAuth({
   },
   emailVerification: {
     sendOnSignUp: true,
-    sendVerificationEmail: async ({ user, url, token }, request) => {
-      await sendEmailViaMailgun({
-        to: user.email,
-        subject: "Verify your email address",
-        text: `Click the link to verify your email: ${url}`,
-      });
-    },
+    sendVerificationEmail: _sendVerificationEmail,
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7,
@@ -29,3 +23,11 @@ export const auth = betterAuth({
   },
   plugins: [openAPI(), admin()],
 });
+
+function _sendVerificationEmail({ user, url, token }, request) {
+  sendEmailViaMailgun({
+    to: user.email,
+    subject: "Verify your email address",
+    text: `Click the link to verify your email: ${url}`,
+  }).catch((err) => console.log("Email sanding failed:", err));
+}
