@@ -26,6 +26,7 @@ app
   .on(["POST", "GET", "OPTIONS"], "/api/v1/auth/*", (c) =>
     auth.handler(c.req.raw),
   )
+
   .route("/api/v1", index)
   .route("/api/v1/employees", employees)
 

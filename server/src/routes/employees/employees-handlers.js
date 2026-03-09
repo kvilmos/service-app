@@ -1,4 +1,14 @@
+import { auth } from "@/lib/auth";
+
 export const create = async (c) => {
-  console.log("new employee was created!");
-  return c.json({ message: "success" }, 200);
+  await auth.api.createUser({
+    body: {
+      email: "hustlerspuma47@gmail.com",
+      password: "secret47!",
+      name: "Test Name",
+      role: "employee",
+    },
+  });
+
+  return c.json({ message: "success" }, 201);
 };
