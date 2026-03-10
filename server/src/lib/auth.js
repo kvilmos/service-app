@@ -4,6 +4,7 @@ import db from "@/db";
 import { admin as adminPlugin, openAPI } from "better-auth/plugins";
 import { sendEmailViaMailgun } from "@/lib/email";
 import { AC, ADMIN, EMPLOYEE, USER } from "@/lib/roles";
+import { ROLES } from "@/constants/roles";
 
 export const auth = betterAuth({
   basePath: "/api/v1/auth",
@@ -27,9 +28,9 @@ export const auth = betterAuth({
     adminPlugin({
       AC,
       roles: {
-        ADMIN,
-        EMPLOYEE,
-        USER,
+        [ROLES.ADMIN]: ADMIN,
+        [ROLES.EMPLOYEE]: EMPLOYEE,
+        [ROLES.USER]: USER,
       },
     }),
   ],

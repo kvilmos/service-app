@@ -12,8 +12,7 @@ export const requirePermission = (requiredPermissionMap) => {
       },
     });
 
-    console.log(has);
-    if (!has) {
+    if (!has.success) {
       return c.json({ message: "Forbidden: Missing required permission" }, 403);
     }
 
