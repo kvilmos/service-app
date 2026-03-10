@@ -1,8 +1,9 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import db from "@/db";
-import { admin, openAPI } from "better-auth/plugins";
+import { admin as adminPlugin, openAPI } from "better-auth/plugins";
 import { sendEmailViaMailgun } from "@/lib/email";
+import { AC, ADMIN, EMPLOYEE, USER } from "@/lib/roles";
 
 export const auth = betterAuth({
   basePath: "/api/v1/auth",
@@ -21,7 +22,17 @@ export const auth = betterAuth({
     expiresIn: 60 * 60 * 24 * 7,
     updateAge: 60 * 60 * 24,
   },
-  plugins: [openAPI(), admin()],
+  plugins: [
+    openAPI(),
+    adminPlugin({
+      AC,
+      roles: {
+        ADMIN,
+        EMPLOYEE,
+        USER,
+      },
+    }),
+  ],
 });
 
 function _sendVerificationEmail({ user, url, token }, request) {

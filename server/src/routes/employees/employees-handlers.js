@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 export const create = async (c) => {
   await auth.api.createUser({
     body: {
-      email: "hustlerspuma47@gmail.com",
+      email: "",
       password: "secret47!",
       name: "Test Name",
       role: "employee",
